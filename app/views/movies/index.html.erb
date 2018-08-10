@@ -1,0 +1,12 @@
+<center>
+  <div class="text-center mb-4">
+    <h1 class="h3 mb-3 font-weight-normal">Cherchez le film que vous voulez</h1>
+  </div>
+ <form method="post" action="search">
+ 
+        <input type="text" name="pseudo" id="pseudo" />
+
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+ <input type="submit" value="Search" />
+ </form>
+</center>

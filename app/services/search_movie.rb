@@ -3,26 +3,27 @@ require'themoviedb'
 
 Dotenv.load
 class SearchMovie
-    attr_accessor :client,:search,:movie
-def initialize(movie)
+    attr_accessor :client,:search,:movie,:result
+def initialize(movies)
  @client= Tmdb::Api.key(ENV['moviedb_api_key'])
- @search = Tmdb::Search.new
  @movie =movie
+ @search=Tmdb::Movie.find(@movie)
+ @result=[]
 end
 
-def language
+def langue
     @client=Tmdb::Api.language("fr")
 end
 
-def perform(b='batman')
-    @search=Tmdb::Movie.find(b) #revhervhe les film avec la variable b
+def perform
+    @search=Tmdb::Movie.find(@movie) #rechervhe les film avec la variable b
 
-    if !(@search).empty?
+    if !(@search).empty? #si le tableau n'est pas vide alors 
         i=0
-        @search.each do |s|
+        @result=@search.map do |s|#la boucle bug pour l'instant
             s[i].title
             s[i].release_date
-            s[i].poster_path
+             s[i].poster_path
             i+=1
         end
     #     # @movie.title
@@ -33,7 +34,4 @@ def perform(b='batman')
      end
 end
 
-def film
-    
-end
 end

@@ -1,0 +1,11 @@
+<div class="center jumbotron">
+  <h1>Voici les film qui ont comme titre <% params[:movie]%> </h1>
+ 
+  <% b=SearchMovie.new.map do |c| %>
+    <p>titre : <%= c.title%> </p>
+    <p>date de sortie: <%= c.release_date %></p>
+    <p>directeur : <%= c.name %> </p>
+    <p>résume : <%= c.overview %> </p>
+    <hr>
+  <% end %>
+</div>
